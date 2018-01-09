@@ -26,10 +26,10 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'), //因为这里已经重命名了，所以不能用回原来的命名
       'common': resolve('src/common'),
       'components': resolve('src/components'),
-      'scss': resolve('src/common/scss')
+      'base': resolve('src/base'),
+      'api': resolve('src/api')
     }
   },
   module: {
