@@ -1,5 +1,6 @@
 <template>
   <div id="tab">
+      <!-- tab最终使得router-link渲染出什么样的标签 -->
       <router-link tag="div" class="tab-item" to="/recommend">
         <span class="tab-link">推荐</span>
       </router-link>

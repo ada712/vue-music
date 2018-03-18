@@ -1,5 +1,5 @@
 import originJSONP from 'jsonp'
-/* 这个是自己定义的一个_jsonp */
+/* 这个是自己定义的一个_jsonp，jsonp的封装 */
 /**
  * @param {String} url 
  * @param {Object} data 
@@ -7,8 +7,8 @@ import originJSONP from 'jsonp'
  * @returns 
  */
 export default function jsonp(url,data,option) {
-  url += (url.indexOf('?') < 0 ? '?' : '&') + param(data);  
-  return new Promise((resolve,reject)=>{
+  url += (url.indexOf('?') < 0 ? '?' : '&') + param(data);  // 把参数拼接到url上
+  return new Promise((resolve,reject)=>{  // 成功调用resolve，失败调用reject
     originJSONP(url,option,(err,data)=>{
       if(!err){
         resolve(data)

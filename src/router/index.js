@@ -11,8 +11,8 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path:'/',
-      redirect: '/recommend'
+      path:'/',  
+      redirect: '/recommend' // 重定向，默认进来根路径指向推荐页面
 
     },
     {
