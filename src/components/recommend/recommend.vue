@@ -26,11 +26,14 @@ import Slider from 'base/slider/slider.vue'
 export default {
   data () {
     return {
-      recommendList: []
+      recommendList: [],
+      discList: []
     }
   },
   created () {
     this._getRecommend()
+    this._getDiscList()
+
   },
   components: {
     Slider
@@ -44,6 +47,14 @@ export default {
         if (res.code === ERR_OK) { // 语义化
           this.recommendList = res.data.slider
           console.log('轮播图数据', this.recommendList)           
+        }
+      })
+    },
+    _getDiscList() {
+      getDiscList().then(res => {
+        if (res.code === ERR_OK) {
+          this.discList = res.data.list
+          console.log(this.discList)
         }
       })
     }
