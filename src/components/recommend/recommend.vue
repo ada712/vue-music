@@ -51,10 +51,11 @@ export default {
       })
     },
     _getDiscList() {
+      console.log('进来了哈')
       getDiscList().then(res => {
         if (res.code === ERR_OK) {
           this.discList = res.data.list
-          console.log(this.discList)
+          console.log('歌单详细列表', this.discList)
         }
       })
     }
