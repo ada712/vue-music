@@ -13,27 +13,24 @@ export function getRecommend() {
 }
 
 export function getDiscList() {
-  const url = '/api/getDiscList' // 这里是ajax请求了
+  const url = '/api/getDiscLists'
 
-  const data = Object.assign({}, {
-    g_tk: 5381,
-    notice: 0,
-    inCharset: 'utf8',
-    outCharset: 'utf-8',
+  const data = Object.assign({}, commonParams, {
+    g_tk: 1080255924,
     platform: 'yqq',
     hostUin: 0,
     sin: 0,
     ein: 29,
     sortId: 5,
-    categoryId: 10000000,
     needNewCode: 0,
+    categoryId: 10000000,
     rnd: Math.random(),
     format: 'json'
   })
 
   return axios.get(url, {
     params: data
-  }).then(res => {
+  }).then((res) => {
     return Promise.resolve(res.data)
   })
 }
