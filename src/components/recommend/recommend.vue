@@ -1,20 +1,33 @@
 <template>
   <div class="recommend">
     <div class="recommend-content">
-      <!-- 保证recommendList是有，才进入插槽 -->
-      <div class="slider-wrapper" v-if="recommendList.length">
-        <slider>
-          <div v-for="item in recommendList" :key="item.key">
-            <a :href="item.linkUrl">
-              <img :src="item.picUrl">
-            </a>
-          </div>
-        </slider>
-      </div>
-      <div class="recommend-list">
-        <h1 class="list-title">热门歌单推荐</h1>
-        <ul>
-        </ul>
+      <!-- better-scroll 只处理容器（wrapper）的第一个子元素（content）的滚动，其它的元素都会被忽略。 -->
+      <div>
+        <!-- 保证recommendList是有，才进入插槽 -->
+        <div class="slider-wrapper" v-if="recommendList.length">
+          <slider>
+            <div v-for="item in recommendList" :key="item.key">
+              <a :href="item.linkUrl">
+                <img :src="item.picUrl">
+              </a>
+            </div>
+          </slider>
+        </div>
+        <div class="recommend-list">
+          <h1 class="list-title">热门歌单推荐</h1>
+          <ul>
+            <li v-for="item in discList" class="item" :key="item">
+              <div class="icon">
+                <img width="60" height="60" :src="item.imgurl" />
+              </div>
+              <div class="text">
+                <!-- v-html会把字符做转义 -->
+                <h2 class="name" v-html="item.creator.name"></h2>
+                <p class="desc" v-html="item.dissname"></p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -23,6 +36,7 @@
 import { getRecommend, getDiscList } from 'api/recommend'
 import { ERR_OK } from 'api/config'
 import Slider from 'base/slider/slider.vue'
+import Scroll from 'base/scoll/scoll'
 export default {
   data () {
     return {
@@ -33,7 +47,6 @@ export default {
   created () {
     this._getRecommend()
     this._getDiscList()
-
   },
   components: {
     Slider
