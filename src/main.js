@@ -4,11 +4,18 @@ import App from './App'
 import router from './router'  //引入到vue实例
 import fastclick from 'fastclick' // 点击300毫秒延迟
 import 'common/scss/index.scss'
+import VueLazyload from 'vue-lazyload'
+
+
 
 // if (process.env.NODE_ENV === 'production') { // 来判断是不是生产环境？
 //   fastclick.attach(document.body)
 // }
 fastclick.attach(document.body)
+Vue.use(VueLazyload, {
+  loading: require('common/image/default.gif')
+})
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

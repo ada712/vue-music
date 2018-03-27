@@ -18,7 +18,7 @@
           <ul>
             <li v-for="item in discList" class="item" :key="item.key">
               <div class="icon">
-                <img width="60" height="60" :src="item.imgurl" />
+                <img width="60" height="60" v-lazy="item.imgurl" />
               </div>
               <div class="text">
                 <!-- v-html会把字符做转义 -->
@@ -29,6 +29,9 @@
           </ul>
         </div>
       </div>
+      <div class="loading-containter" v-show="!discList.length">
+        <loading></loading>
+      </div>
     </scroll>
   </div>
 </template>
@@ -37,6 +40,7 @@ import { getRecommend, getDiscList } from 'api/recommend'
 import { ERR_OK } from 'api/config'
 import Slider from 'base/slider/slider.vue'
 import Scroll from 'base/scroll/scroll.vue'
+import Loading from 'base/loading/loading'
 export default {
   data () {
     return {
@@ -50,8 +54,8 @@ export default {
   },
   components: {
     Slider,
-    Scroll
-    // Loading
+    Scroll,
+    Loading
   },
   methods:{
     // jsonp
