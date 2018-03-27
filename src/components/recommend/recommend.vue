@@ -1,6 +1,6 @@
 <template>
   <div class="recommend">
-    <div class="recommend-content">
+    <scroll ref="scroll" class="recommend-content" :data="discList">
       <!-- better-scroll 只处理容器（wrapper）的第一个子元素（content）的滚动，其它的元素都会被忽略。 -->
       <div>
         <!-- 保证recommendList是有，才进入插槽 -->
@@ -8,7 +8,7 @@
           <slider>
             <div v-for="item in recommendList" :key="item.key">
               <a :href="item.linkUrl">
-                <img :src="item.picUrl">
+                <img @load="loadImage" :src="item.picUrl">
               </a>
             </div>
           </slider>
@@ -16,7 +16,7 @@
         <div class="recommend-list">
           <h1 class="list-title">热门歌单推荐</h1>
           <ul>
-            <li v-for="item in discList" class="item" :key="item">
+            <li v-for="item in discList" class="item" :key="item.key">
               <div class="icon">
                 <img width="60" height="60" :src="item.imgurl" />
               </div>
@@ -29,14 +29,14 @@
           </ul>
         </div>
       </div>
-    </div>
+    </scroll>
   </div>
 </template>
 <script>
 import { getRecommend, getDiscList } from 'api/recommend'
 import { ERR_OK } from 'api/config'
 import Slider from 'base/slider/slider.vue'
-import Scroll from 'base/scoll/scoll'
+import Scroll from 'base/scroll/scroll.vue'
 export default {
   data () {
     return {
@@ -49,8 +49,8 @@ export default {
     this._getDiscList()
   },
   components: {
-    Slider
-    // Scroll,
+    Slider,
+    Scroll
     // Loading
   },
   methods:{
@@ -71,6 +71,13 @@ export default {
           console.log('歌单详细列表', this.discList)
         }
       })
+    },
+    loadImage() {
+      console.log(this.checkloaded)
+      if (!this.checkloaded) {
+        this.checkloaded = true
+        this.$refs.scroll.refresh()
+      }
     }
   }
 }
