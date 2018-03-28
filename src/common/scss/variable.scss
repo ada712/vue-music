@@ -1,14 +1,15 @@
 // 颜色定义规范
-$color-background : rgb(14, 12, 12);
+// $color-background : rgb(14, 12, 12);
+$color-background : #fff;
 $color-background-d : rgba(0, 0, 0, 0.3);
-$color-highlight-background : #333;
+$color-highlight-background : rgb(145, 149, 160);
 $color-dialog-background : #666;
-$color-theme : #e9e5da;
+$color-theme : #000;
 $color-theme-d : rgba(255, 205, 49, 0.5);
 $color-sub-theme : #d93f30;
-$color-text : rgb(150, 146, 172);
-$color-text-d : rgba(255, 255, 255, 0.3);
-$color-text-l : rgba(255, 255, 255, 0.5);
+$color-text : rgb(61, 58, 77);
+$color-text-d : rgba(61, 58, 77, 0.6);
+$color-text-l : rgb(0, 0, 0);
 $color-text-ll : rgba(255, 255, 255, 0.8);
 
 //字体定义规范

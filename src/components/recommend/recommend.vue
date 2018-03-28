@@ -63,21 +63,21 @@ export default {
       getRecommend().then(res => {
         if (res.code === ERR_OK) { // 语义化
           this.recommendList = res.data.slider
-          console.log('轮播图数据', this.recommendList)           
+          // console.log('轮播图数据', this.recommendList)           
         }
       })
     },
     _getDiscList() {
-      console.log('进来了哈')
+      // console.log('进来了哈')
       getDiscList().then(res => {
         if (res.code === ERR_OK) {
           this.discList = res.data.list
-          console.log('歌单详细列表', this.discList)
+          // console.log('歌单详细列表', this.discList)
         }
       })
     },
     loadImage() {
-      console.log(this.checkloaded)
+      // console.log(this.checkloaded)
       if (!this.checkloaded) {
         this.checkloaded = true
         this.$refs.scroll.refresh()
