@@ -36,8 +36,8 @@ export default {
         }
         &.router-link-active {
             .tab-link {
-                color: pink;
-                border-bottom: 2px solid pink;
+                // color: pink;
+                border-bottom: 2px solid black;
             }
         }
     }

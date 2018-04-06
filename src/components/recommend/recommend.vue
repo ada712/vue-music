@@ -18,7 +18,7 @@
           <ul>
             <li v-for="item in discList" class="item" :key="item.key">
               <div class="icon">
-                <img width="60" height="60" :src="item.imgurl" />
+                <img width="60" height="60" v-lazy="item.imgurl" />
               </div>
               <div class="text">
                 <!-- v-html会把字符做转义 -->
@@ -29,6 +29,9 @@
           </ul>
         </div>
       </div>
+      <div class="loading-containter" v-show="!discList.length">
+        <loading></loading>
+      </div>
     </scroll>
   </div>
 </template>
@@ -37,6 +40,7 @@ import { getRecommend, getDiscList } from 'api/recommend'
 import { ERR_OK } from 'api/config'
 import Slider from 'base/slider/slider.vue'
 import Scroll from 'base/scroll/scroll.vue'
+import Loading from 'base/loading/loading'
 export default {
   data () {
     return {
@@ -50,8 +54,8 @@ export default {
   },
   components: {
     Slider,
-    Scroll
-    // Loading
+    Scroll,
+    Loading
   },
   methods:{
     // jsonp
@@ -59,21 +63,21 @@ export default {
       getRecommend().then(res => {
         if (res.code === ERR_OK) { // 语义化
           this.recommendList = res.data.slider
-          console.log('轮播图数据', this.recommendList)           
+          // console.log('轮播图数据', this.recommendList)           
         }
       })
     },
     _getDiscList() {
-      console.log('进来了哈')
+      // console.log('进来了哈')
       getDiscList().then(res => {
         if (res.code === ERR_OK) {
           this.discList = res.data.list
-          console.log('歌单详细列表', this.discList)
+          // console.log('歌单详细列表', this.discList)
         }
       })
     },
     loadImage() {
-      console.log(this.checkloaded)
+      // console.log(this.checkloaded)
       if (!this.checkloaded) {
         this.checkloaded = true
         this.$refs.scroll.refresh()

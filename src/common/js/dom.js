@@ -10,7 +10,7 @@ export function addClass(el, className) {
     return reg.test(el.className)
   }
   
-  export function getData(el, name, val) {
+  export function getData(el, name, val) { //有val就set否则就get
     const prefix = 'data-'
     name = prefix + name
     if (val) {
