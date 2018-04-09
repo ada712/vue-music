@@ -1,13 +1,15 @@
 <template>
   <div class="singer">
-    <listview :data ="singers"></listview>
+    <list-view @select="selectSinger" :data ="singers" ref="list"></list-view>
+    <router-view></router-view>
   </div>
 </template>
 <script>
 import {getSingerList} from 'api/singer'
 import Singer from 'common/js/singer'
 import { ERR_OK } from 'api/config'
-import Listview from 'base/listview/listview'
+import ListView from 'base/listview/listview'
+import {mapMutations} from 'vuex'
 const HOT_NAME = '热门'
 const HOT_SINGER_LEN = 10
 export default {
@@ -17,12 +19,18 @@ export default {
     }
   },
   components: {
-    Listview
+    ListView
   },
   created() {
     this._getSingerList()
   },
   methods: {
+    selectSinger(singer) {
+      this.$router.push({ //路由编程式
+        path: `/singer/${singer.id}`
+      })
+      this.setSinger(singer) // 相当于对mutations的一个提交
+    },
     _getSingerList() {
       getSingerList().then(res => {
         if (res.code === ERR_OK) {
@@ -77,7 +85,11 @@ export default {
         return a.title.charCodeAt(0) - b.title.charCodeAt(0)
       })
       return hot.concat(ret) //拼接成为一维数组
-    }
+    },
+    ...mapMutations({
+      setSinger: 'SET_SINGER' // 将 `this.setSinger()` 映射为 `this.$store.commit('SET_SINGER')`
+
+    })
   }
 }
 </script>

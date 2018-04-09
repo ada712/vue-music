@@ -5,6 +5,7 @@ import router from './router'  //引入到vue实例
 import fastclick from 'fastclick' // 点击300毫秒延迟
 import 'common/scss/index.scss'
 import VueLazyload from 'vue-lazyload'
+import store from './store'
 
 
 
@@ -22,6 +23,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,     //引入到vue实例
+  store,
   template: '<App/>',
   components: { App }
 })
