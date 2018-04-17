@@ -7,8 +7,15 @@
 import {mapGetters} from 'vuex'
 import {getSingerDetail} from 'api/singer'
 import {ERR_OK} from 'api/config'
+import {getMusic} from 'api/song.js'
+import {createSong} from 'common/js/song'
 
 export default {
+  data() {
+    return {
+      songs:[]
+    }
+  },
   computed: {
     ...mapGetters([
       'singer' // 映射 `this.singer` 为 `store.getters.singer`
@@ -25,10 +32,32 @@ export default {
         return
       }         
       getSingerDetail(this.singer.id).then(res=>{
+        console.log('333')
         if(res.code === ERR_OK ) {
-          console.log(res.data.list)
+          this.songs = this._normalizeSongs(res.data.list)
+          console.log('111',this.songs)
         }
       })
+    },
+    // 格式化抓取的数据
+    _normalizeSongs(list) {
+      let ret = []
+      list.forEach((item, index) => {
+        let { musicData } = item // 对象  结构赋值
+        if (musicData.songid && musicData.albummid) {
+          console.log('222')
+          getMusic(musicData.songmid).then((res) => {
+            if(res.code === ERR_OK) {
+              const svkey = res.data.items
+              const songVkey = svkey[0].songVkey
+              const newSong = createSong(musicData, songVkey)
+              ret.push(newSong)
+            }
+          })
+          // ret.push(createSong(musicData))
+        }
+      })
+      return ret
     }
   }
 }

@@ -25,6 +25,21 @@ module.exports = {
         pathRewrite: { // pathRewrite设置一下前缀
           '^/api/getDiscLists': ''
         }
+      },
+      '/api/music': {
+        // target 代表源地址
+        target: 'https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg', 
+        // bypass代表访问源地址是提前设置的数据
+        bypass: function(req, res, proxyTable) {
+          req.headers.referer = 'https://c.y.qq.com'; // req这个参数就是请求的信息，可以在这里设置请求头信息
+          req.headers.host = 'c.y.qq.com';
+          req.params = req.query
+        },
+        secure: false, //如果是https接口，需要配置这个参数
+        changeOrigin: true, // 是否改变源地址,如果接口跨域，需要进行这个参数配置
+        pathRewrite: { // pathRewrite设置一下前缀
+          '^/api/music': ''
+        }
       }
     },
 

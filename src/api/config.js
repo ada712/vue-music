@@ -17,5 +17,7 @@ export const commonParams = {
 //     param: 'jsonpCallback',
 //     prefix: 'playlistinfoCallback'
 //   }
+
+// 所有的接口正确返回值，都有一个code=0,配置一个常量，语义化更强
   export const ERR_OK = 0
   
