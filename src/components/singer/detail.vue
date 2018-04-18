@@ -45,11 +45,13 @@ export default {
       list.forEach((item, index) => {
         let { musicData } = item // 对象  结构赋值
         if (musicData.songid && musicData.albummid) {
-          console.log('222')
+          // console.log('准备进入')
           getMusic(musicData.songmid).then((res) => {
             if(res.code === ERR_OK) {
               const svkey = res.data.items
-              const songVkey = svkey[0].songVkey
+              // console.log('svkey', svkey)
+              const songVkey = svkey[0].vkey
+              // console.log('songVkey', songVkey)
               const newSong = createSong(musicData, songVkey)
               ret.push(newSong)
             }

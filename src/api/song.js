@@ -3,6 +3,8 @@
 import axios from 'axios'
 
 export function getMusic(mid) {
+  // console.log('来到getmusic')
+  
   const url = '/api/music'
 
   const data = Object.assign({}, {
@@ -17,7 +19,7 @@ export function getMusic(mid) {
     // uin: 1152579039,
     // cid: 205361747,
     // format: 'json'
-    g_tk: 91296987,
+    g_tk: 2055263323,
     loginUin: 1152579039,
     hostUin: 0,
     format:'json',
@@ -30,7 +32,7 @@ export function getMusic(mid) {
     uin: 1152579039,
     songmid:mid,
     filename: 'C400' + mid + '.m4a',
-    guid: 7099607575
+    guid: 3636738193
   })
 
   return axios.get(url, {
