@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="singer-detail"></div>
+      <music-list :songs="songs" :bg-image="bgImage" :title="title"></music-list>
   </transition>
 </template>
 <script>
@@ -9,14 +9,23 @@ import {getSingerDetail} from 'api/singer'
 import {ERR_OK} from 'api/config'
 import {getMusic} from 'api/song.js'
 import {createSong} from 'common/js/song'
-
+import MusicList from 'components/musicList/musicList'
 export default {
   data() {
     return {
       songs:[]
     }
   },
+  components: {
+    MusicList
+  },
   computed: {
+    title() {
+      return this.singer.name
+    },
+    bgImage() {
+      return this.singer.avatar
+    },
     ...mapGetters([
       'singer' // 映射 `this.singer` 为 `store.getters.singer`
     ])
