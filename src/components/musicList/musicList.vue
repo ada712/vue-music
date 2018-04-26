@@ -19,6 +19,10 @@
       <div class="song-list-wrapper">
         <song-list :songs="songs"></song-list>
       </div>
+      <!--加载loading-->
+      <div v-show="!songs.length" class="loading-container">
+        <loading></loading>
+      </div>
     </scroll>
   </div>
 </template>
@@ -26,10 +30,17 @@
 <script>
   import Scroll from 'base/scroll/scroll'
   import SongList from 'base/songList/songList'
+  import Loading from 'base/loading/loading'
+  import {prefixStyle} from 'common/js/dom'
+
+
+  const RESERVED_HEIGHT = 40
+  const transform = prefixStyle('transform')
   export default {
     components: {
       Scroll,
-      SongList
+      SongList,
+      Loading 
     },
     props: {
       bgImage: {
@@ -68,39 +79,39 @@
       this.listenScroll = true
     },
      watch: {
-      scrollY(newVal) {
-        let translateY = Math.max(this.minTransalteY, newVal)
-        let scale = 1
-        let zIndex = 0
-        const percent = Math.abs(newVal / this.imageHeight)
-        if (newVal > 0) {
-          scale = 1 + percent
-          zIndex = 10
-        }
+      // scrollY(newVal) {
+      //   let translateY = Math.max(this.minTransalteY, newVal)
+      //   let scale = 1
+      //   let zIndex = 0
+      //   const percent = Math.abs(newVal / this.imageHeight)
+      //   if (newVal > 0) {
+      //     scale = 1 + percent
+      //     zIndex = 10
+      //   }
 
-        this.$refs.layer.style[transform] = `translate3d(0,${translateY}px,0)`
-        if (newVal < this.minTransalteY) {
-          zIndex = 10
-          this.$refs.bgImage.style.paddingTop = 0
-          this.$refs.bgImage.style.height = `${RESERVED_HEIGHT}px`
-          this.$refs.playBtn.style.display = 'none'
-        } else {
-          this.$refs.bgImage.style.paddingTop = '70%'
-          this.$refs.bgImage.style.height = 0
-          this.$refs.playBtn.style.display = ''
-        }
-        // 下拉背景图片伸缩
-        this.$refs.bgImage.style[transform] = `scale(${scale})`
-        this.$refs.bgImage.style.zIndex = zIndex
-      }
+      //   // this.$refs.layer.style[ transform ] = `translate3d(0,${translateY}px,0)`
+      //   if (newVal < this.minTransalteY) {
+      //     zIndex = 10
+      //     this.$refs.bgImage.style.paddingTop = 0
+      //     this.$refs.bgImage.style.height = `${RESERVED_HEIGHT}px`
+      //     this.$refs.playBtn.style.display = 'none'
+      //   } else {
+      //     this.$refs.bgImage.style.paddingTop = '70%'
+      //     this.$refs.bgImage.style.height = 0
+      //     this.$refs.playBtn.style.display = ''
+      //   }
+      //   // 下拉背景图片伸缩
+      //   this.$refs.bgImage.style[transform] = `scale(${scale})`
+      //   this.$refs.bgImage.style.zIndex = zIndex
+      // }
     },
     methods: {
       back() {
         this.$router.back()
       },
-      scroll(pos) {
-        this.scrollY = pos.y
-      }
+      // scroll(pos) {
+      //   this.scrollY = pos.y
+      // }
     }
   }
 </script>
@@ -152,6 +163,7 @@
       bottom: 20px;
       z-index: 50;
       width: 100%;
+      // overflow: hidden;
       .play {
         box-sizing: border-box;
         width: 135px;
@@ -195,6 +207,7 @@
     top: 0;
     bottom: 0;
     width: 100%;
+    overflow: hidden;    
     background: $color-background;
     .song-list-wrapper {
       padding: 20px 30px;
