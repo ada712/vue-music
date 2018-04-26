@@ -10,7 +10,6 @@
     </div>
     <div class="bg-layer" ref="layer"></div>
     <scroll :data="songs" 
-      @scroll="scroll"
       :listen-scroll="listenScroll" 
       :probe-type="probeType" 
       class="list" 
