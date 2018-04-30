@@ -38,19 +38,19 @@ export default {
       // 刷新当前页回退到singer
       if (!this.singer.id) {
         this.$router.push('/singer')
-        return
+        // return
       }         
       getSingerDetail(this.singer.id).then(res=>{
-        console.log('333')
         if(res.code === ERR_OK ) {
           this.songs = this._normalizeSongs(res.data.list)
-          console.log('111',this.songs)
+          console.log('歌曲',this.songs)
         }
       })
     },
     // 格式化抓取的数据
     _normalizeSongs(list) {
       let ret = []
+      const newSong = ''
       list.forEach((item, index) => {
         let { musicData } = item // 对象  结构赋值
         if (musicData.songid && musicData.albummid) {
@@ -58,14 +58,15 @@ export default {
           getMusic(musicData.songmid).then((res) => {
             if(res.code === ERR_OK) {
               const svkey = res.data.items
-              // console.log('svkey', svkey)
+              // // console.log('svkey', svkey)
               const songVkey = svkey[0].vkey
-              // console.log('songVkey', songVkey)
+              // // console.log('songVkey', songVkey)
               const newSong = createSong(musicData, songVkey)
               ret.push(newSong)
             }
           })
           // ret.push(createSong(musicData))
+          // ret.push(newSong)          
         }
       })
       return ret

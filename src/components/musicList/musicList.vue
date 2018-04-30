@@ -16,7 +16,7 @@
       ref="list"
     >
       <div class="song-list-wrapper">
-        <song-list :songs="songs"></song-list>
+        <song-list :songs="songs" @select="selectItem"></song-list>
       </div>
       <!--加载loading-->
       <div v-show="!songs.length" class="loading-container">
@@ -31,7 +31,7 @@
   import SongList from 'base/songList/songList'
   import Loading from 'base/loading/loading'
   import {prefixStyle} from 'common/js/dom'
-
+  import {mapActions} from 'vuex'
 
   const RESERVED_HEIGHT = 40
   const transform = prefixStyle('transform')
@@ -77,37 +77,19 @@
       this.probeType = 3
       this.listenScroll = true
     },
-     watch: {
-      // scrollY(newVal) {
-      //   let translateY = Math.max(this.minTransalteY, newVal)
-      //   let scale = 1
-      //   let zIndex = 0
-      //   const percent = Math.abs(newVal / this.imageHeight)
-      //   if (newVal > 0) {
-      //     scale = 1 + percent
-      //     zIndex = 10
-      //   }
-
-      //   // this.$refs.layer.style[ transform ] = `translate3d(0,${translateY}px,0)`
-      //   if (newVal < this.minTransalteY) {
-      //     zIndex = 10
-      //     this.$refs.bgImage.style.paddingTop = 0
-      //     this.$refs.bgImage.style.height = `${RESERVED_HEIGHT}px`
-      //     this.$refs.playBtn.style.display = 'none'
-      //   } else {
-      //     this.$refs.bgImage.style.paddingTop = '70%'
-      //     this.$refs.bgImage.style.height = 0
-      //     this.$refs.playBtn.style.display = ''
-      //   }
-      //   // 下拉背景图片伸缩
-      //   this.$refs.bgImage.style[transform] = `scale(${scale})`
-      //   this.$refs.bgImage.style.zIndex = zIndex
-      // }
-    },
     methods: {
-      back() {
-        this.$router.back()
-      },
+    selectItem(item,index){
+      this.selectPlay({
+        list: this.songs,
+        index
+      })
+    },
+    back() {
+      this.$router.back()
+    },
+    ...mapActions([
+      'selectPlay'
+    ])
       // scroll(pos) {
       //   this.scrollY = pos.y
       // }

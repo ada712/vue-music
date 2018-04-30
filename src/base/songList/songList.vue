@@ -33,7 +33,7 @@
     },
     methods: {
       selectItem(item, index) {
-        this.$emit('select', item, index)
+        this.$emit('select', item, index) // 派发事件，告诉父组件我被点击了
       },
       getDesc(song) {
         return `${song.singer}·${song.album}`
