@@ -1,5 +1,5 @@
 import storage from 'good-storage'
-
+// 是对localstorage和sessionStorage的封装
 const SEARCH_KEY = '__search__'
 const SEARCH_MAX_LEN = 15
 
@@ -15,9 +15,9 @@ function insertArray(arr, val, compare, maxLen) {
     return
   }
   if (index > 0) {
-    arr.splice(index, 1)
+    arr.splice(index, 1) // 把之前的数据删掉
   }
-  arr.unshift(val)
+  arr.unshift(val) // 将数据插进来第一条数据
   if (maxLen && arr.length > maxLen) {
     arr.pop()
   }
