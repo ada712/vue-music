@@ -6,7 +6,7 @@
       </div>
       <div class="top">
         <div class="back" @click="back">
-          <i class="icon-back"></i>
+          <i class="iconfont icon-xia"></i>
         </div>
         <h1 class="title" v-html="currentSong.name"></h1>
         <h2 class="subtitle" v-html="currentSong.singer"></h2>
@@ -19,6 +19,20 @@
             </div>
           </div>
         </div>
+         <!-- 皮肤 -->
+        <div class="skin">
+          <!-- <transition name="slide-fade">
+            <div v-show="isShowSkinColors" class="skin-colors">
+              <i @click="changeSkinColor('#B72712')" :class="{selected: skinColor==='#B72712'}" class="one"></i>
+              <i @click="changeSkinColor('#1565C0')" :class="{selected: skinColor==='#1565C0'}" class="two"></i>
+              <i @click="changeSkinColor('#212121')" :class="{selected: skinColor==='#212121'}" class="three"></i>
+              <i @click="changeSkinColor('#1B5E20')" :class="{selected: skinColor==='#1B5E20'}" class="four"></i>
+            </div>
+          </transition>
+
+          <div @click="showSkinColor" :class="{'icon-skin-red': skinColor === '#B72712','icon-skin-blue': skinColor === '#1565C0','icon-skin-black': skinColor === '#212121','icon-skin-green': skinColor === '#1B5E20'}" class="icon-skin"></div> -->
+        </div>
+          <!-- /皮肤 -->
       </div>
       <div class="bottom">
         <div class="progress-wrapper">
@@ -29,38 +43,38 @@
           <span class="time time-r">{{format(currentSong.duration)}}</span>          
         </div>
         <div class="operators">
-          <div class="icon i-left">
+          <!-- <div class="icon i-left">
             <i class="icon-sequence"></i>
-          </div>
+          </div> -->
           <div class="icon i-left" :class="disableCls">
-            <i @click="prev" class="icon-prev"></i>
+            <i @click="prev" class="iconfont icon-yinpinshangyiquxiayiqu"></i>
           </div>
           <div class="icon i-center" :class="disableCls">
             <i @click="togglePlaying" :class="playIcon"></i>
           </div>
           <div class="icon i-right" :class="disableCls">
-            <i @click="next" class="icon-next"></i>
+            <i @click="next" class="iconfont icon-yinpinshangyiquxiayiqu-copy"></i>
           </div>
-          <div class="icon i-right">
+          <!-- <div class="icon i-right">
             <i class="icon icon-not-favorite"></i>
-          </div>
+          </div> -->
         </div>
       </div>
   </div>
   <div class="mini-player" v-show="!fullScreen" @click="open" >
     <div class="icon" >
-      <img width="40" height="40" :src="currentSong.image" :class="cdCls">
+      <img width="40" height="40" :src="currentSong.image" :class="cdCls" style="padding-bottom: 10px;">
     </div>
     <div class="text">
       <h2 class="name" v-html="currentSong.name"></h2>
       <p class="desc" v-html="currentSong.singer"></p>
     </div>
     <div class="control">
-      <i @click.stop="togglePlaying" :class="miniIcon"></i>
+      <i @click.stop="togglePlaying" :class="miniIcon" style="font-size: 40px;"></i>
     </div>
-    <div class="control">
+    <!-- <div class="control">
       <i class="icon-playlist"></i>
-    </div>
+    </div> -->
   </div>
   <audio ref="audio" :src="currentSong.url" @canplay="ready"  @error="error" @timeupdate="updateTime"></audio>
 </div>
@@ -93,10 +107,10 @@ export default {
       return this.songReady ? '' : 'disable'
     },
     playIcon() {
-      return this.playing ? 'icon-pause' : 'icon-play'
+      return this.playing ? 'iconfont icon-bofang' : 'iconfont icon-zanting'
     },
     miniIcon() {
-      return this.playing ? 'icon-pause-mini' : 'icon-play-mini'
+      return this.playing ? 'iconfont icon-bofang' : 'iconfont icon-zanting'
     },
     percent() {
       return this.currentTime / this.currentSong.duration
@@ -239,8 +253,8 @@ export default {
         margin-bottom: 25px;
         .back{
           position: absolute;
-          top: 0;
-          left: 6px;
+          top: -40px;
+          left: 22px;
           z-index: 50;
           .icon-back{
             display: block;
@@ -273,6 +287,27 @@ export default {
         bottom: 170px;
         white-space: nowrap;
         font-size: 0;
+        // .icon-skin {
+        //   flex: 1;
+        //   width: 100%;
+        //   height: 30px;
+        //   background-repeat: no-repeat;
+        //   background-size: contain;
+        //   margin-top: 3px;
+        //   cursor: pointer;
+        // }
+        // .icon-skin-red {
+        //   background-image: url('./skinRed.svg');
+        // }
+        // .icon-skin-green {
+        //   background-image: url('./skinGreen.svg');
+        // }
+        // .icon-skin-blue {
+        //   background-image: url('./skinBlue.svg');
+        // }
+        // .icon-skin-black {
+        //   background-image: url('./skinBlack.svg');
+        // }
         .middle-l{
           display: inline-block;
           vertical-align: top;
@@ -442,7 +477,8 @@ export default {
       z-index: 180;
       width: 100%;
       height: 60px;
-      background: $color-highlight-background;
+      background-color: rgb(183, 39, 18);
+      color: #fff;
       &.mini-enter-active, &.mini-leave-active{
         transition: all 0.4s;
       }
@@ -474,21 +510,23 @@ export default {
           margin-bottom: 2px;
           @include no-wrap();
           font-size: $font-size-medium;
-          color: $color-text;
+          color: #fff;
         }
         .desc{
           @include no-wrap();
           font-size: $font-size-small;
-          color: $color-text-d;
+          color: #fff;
         }
       }
       .control{
         flex: 0 0 30px;
         width: 30px;
         padding: 0 10px;
+        padding-bottom: 34px;
+        padding-right: 30px;
         .icon-play-mini, .icon-pause-mini, .icon-playlist{
           font-size: 30px;
-          color: $color-theme-d;
+          color: #fff;
         }
         .icon-mini{
           font-size: 32px;

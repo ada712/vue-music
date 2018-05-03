@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <m-header></m-header>
+    <!-- 侧边栏 -->
+    <aside-menu v-show="isShowAsideMenu" class="cbl"></aside-menu>
     <tab></tab>
     <!-- 用keep-alive可以把dom缓存到内存中 -->
     <keep-alive>
@@ -14,13 +16,20 @@
 import MHeader from 'components/m-header/m-header'
 import Tab from 'components/tab/tab'
 import Player from 'components/player/player'
-
+import AsideMenu from 'components/AsideMenu/AsideMenu.vue';
 export default {
   name: 'app',
   components:{
     MHeader,
     Tab,
-    Player
+    Player,
+    AsideMenu
+  },
+  computed:{
+    //获取是否展示侧边栏
+    isShowAsideMenu() {
+      return this.$store.state.isShowAsideMenu;
+    },
   }
 }
 </script>

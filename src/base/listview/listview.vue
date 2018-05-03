@@ -197,7 +197,7 @@
       padding-left: 20px;
       font-size: $font-size-small;
       color: $color-text-l;
-      background: $color-highlight-background;
+      background-color: rgba(0, 0, 0, 0.1);
     }
     .list-group-item {
       display: flex;

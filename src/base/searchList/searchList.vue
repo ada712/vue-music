@@ -53,13 +53,13 @@
       }
       .text{
         flex: 1;
-        color: $color-text-l;
+        color: rgba(61, 58, 77, 0.6);
         font-size: 0.14rem;
       }
       .icon{
         @include extend-click();
+         font-size: 0.1rem;
         .icon-delete{
-          font-size: $font-size-small;
           color: $color-text-d;
         }
       }

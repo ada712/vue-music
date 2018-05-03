@@ -2,7 +2,7 @@
   <div class="music-list">
     <!--返回上一层-->
     <div class="back" @click="back">
-      <i class="icon-back"></i>
+      <i class="iconfont icon-fanhui" style="font-size:25px;color:#fff;"></i>
     </div>
     <!--歌曲信息-->
     <h1 class="title" v-html="title"></h1>
@@ -110,9 +110,10 @@
   background: $color-background;
   .back {
     position: absolute;
-    top: 0;
-    left: 6px;
+    top: -40px;
+    left: 22px;
     z-index: 50;
+    // font-size: 30px;
     .icon-back {
       display: block;
       padding: 10px;
@@ -130,7 +131,8 @@
     text-align: center;
     line-height: 40px;
     font-size: $font-size-large;
-    color: $color-text;
+    color:#fff;
+
   }
   .bg-image {
     position: relative;

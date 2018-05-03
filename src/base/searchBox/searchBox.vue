@@ -1,6 +1,6 @@
 <template>
   <div class="search-box">
-    <i class="icon-search"></i>
+    <!-- <i class="icon-search"></i> -->
     <input ref="query" v-model="query" class="box" :placeholder="placeholder"/>
     <i @click="clear" v-show="query" class="icon-dismiss"></i>
   </div>
@@ -50,7 +50,7 @@
     width: 100%;
     padding: 0 6px;
     height: 40px;
-    background: $color-highlight-background;
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     .icon-search{
       font-size: 24px;
@@ -61,7 +61,7 @@
       margin: 0 5px;
       line-height: 18px;
       outline: none;
-      background: $color-highlight-background;
+      background: rgba(0, 0, 0, 0.001);
       color: $color-text;
       font-size: $font-size-medium;
       &::placeholder{

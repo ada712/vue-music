@@ -100,8 +100,8 @@
           padding: 0 20px;
           height: 100px;
           overflow: hidden;
-          background: $color-highlight-background;
-          color: $color-text-d;
+          background-color: rgba(0, 0, 0, 0.1);
+          color: black;
           font-size: $font-size-small;
           .song{
             @include no-wrap();

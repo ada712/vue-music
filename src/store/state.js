@@ -24,7 +24,9 @@ const state = {
   // 播放历史 Array
   playHistory: loadPlay(),
   // 用户中心
-  favoriteList: loadFavorite()
+  favoriteList: loadFavorite(),
+  // 是否默认隐藏侧边栏
+  isShowAsideMenu: false,//默认隐藏起来的
 }
 
 export default state

@@ -15,7 +15,7 @@
       >
         <div class="hot-key">
           <h1 class="title">热门搜索</h1>
-          <ul>
+          <ul style="margin-top: -60px;">
             <li class="item" 
               v-for="item in hotkey" 
               :key="item.key"
@@ -152,10 +152,10 @@
             padding: 5px 10px;
             margin: 0 10px 10px 0;
             border-radius: 6px;
-            background: $color-highlight-background;
+            // background: rgba(0,0,0,0.1);
             font-size: $font-size-medium;
             color: $color-text-d;
-            display: flex;
+            // display: flex;
             // align-items: center;
           }
         }

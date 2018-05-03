@@ -37,6 +37,9 @@ const mutations = {
   },
   [types.SET_FAVORITE_LIST](state, list) {
     state.favoriteList = list
+  },
+  [types.showAsideMenu](state, flag) {
+    state.isShowAsideMenu = flag;
   }
 }
 
