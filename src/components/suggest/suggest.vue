@@ -93,6 +93,7 @@ export default {
       search(this.query,this.page,this.showSinger,perpage).then((res)=>{
         if (res.code === ERR_OK) {
           this.result = this._getResult(res.data)
+          console.log('搜索的结果',this.result)
           // this._checkHasMore(res.data)
         }
       })

@@ -47,6 +47,7 @@
         getTopListDetail(this.topList.id).then(res => {
           if (res.code === ERR_OK) {
             this.songs = this._normalizeList(res.songlist)
+            // console.log("排行榜详细列表",this.songs)
           }
         })
       },

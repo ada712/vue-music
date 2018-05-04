@@ -118,6 +118,7 @@
         getHotKey().then(res => {
           if (res.code === ERR_OK) {
             this.hotkey = res.data.hotkey.slice(0,4)
+            console.log('热门搜索', this.hotkey)
           }
         })
       }
