@@ -30,7 +30,7 @@
             </ul>
             <ul>
             <!-- 阻止默认行为 -->
-              <li @click.stop.prevent="$store.commit('showIndex', false)"><i class="icon-skin"></i>个性换肤</li>
+              <li @click="open"><i class="icon-skin"></i>个性换肤</li>
               <li @click="showAbout"><i class="aboutme"></i>关于</li>
             </ul>
             <div class="back">
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import {mapGetters,mapMutations} from 'vuex'
 export default {
   name: 'AsideMenu',
   computed: {
@@ -68,11 +69,18 @@ export default {
     showAsideMenu() {
       this.$store.commit('showAsideMenu', false);
     },
-
     //点击关于，展示关于的界面
     showAbout() {
       this.$store.commit('showAbout', true);
-    }
+      this.showAsideMenu()      
+    },
+    open() {
+       this.setFullScreen(true)
+       this.showAsideMenu()
+    },
+    ...mapMutations({
+      setFullScreen: 'SET_FULL_SCREEN'
+    }),
   }
 }
 </script>

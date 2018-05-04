@@ -27,6 +27,10 @@ const state = {
   favoriteList: loadFavorite(),
   // 是否默认隐藏侧边栏
   isShowAsideMenu: false,//默认隐藏起来的
+
+  skinColor: localStorage.skinColor || '#B72712',
+
+  isShowAbout: false//关于的页面
 }
 
 export default state

@@ -21,7 +21,7 @@
         </div>
          <!-- 皮肤 -->
         <div class="skin">
-          <!-- <transition name="slide-fade">
+          <transition name="slide-fade">
             <div v-show="isShowSkinColors" class="skin-colors">
               <i @click="changeSkinColor('#B72712')" :class="{selected: skinColor==='#B72712'}" class="one"></i>
               <i @click="changeSkinColor('#1565C0')" :class="{selected: skinColor==='#1565C0'}" class="two"></i>
@@ -29,8 +29,7 @@
               <i @click="changeSkinColor('#1B5E20')" :class="{selected: skinColor==='#1B5E20'}" class="four"></i>
             </div>
           </transition>
-
-          <div @click="showSkinColor" :class="{'icon-skin-red': skinColor === '#B72712','icon-skin-blue': skinColor === '#1565C0','icon-skin-black': skinColor === '#212121','icon-skin-green': skinColor === '#1B5E20'}" class="icon-skin"></div> -->
+          <div @click="showSkinColor" :class="{'icon-skin-red': skinColor === '#B72712','icon-skin-blue': skinColor === '#1565C0','icon-skin-black': skinColor === '#212121','icon-skin-green': skinColor === '#1B5E20'}" class="icon-skin"></div> 
         </div>
           <!-- /皮肤 -->
       </div>
@@ -46,13 +45,13 @@
           <!-- <div class="icon i-left">
             <i class="icon-sequence"></i>
           </div> -->
-          <div class="icon i-left" :class="disableCls">
+          <div class="icon i-left" >
             <i @click="prev" class="iconfont icon-yinpinshangyiquxiayiqu"></i>
           </div>
-          <div class="icon i-center" :class="disableCls">
+          <div class="icon i-center" >
             <i @click="togglePlaying" :class="playIcon"></i>
           </div>
-          <div class="icon i-right" :class="disableCls">
+          <div class="icon i-right" >
             <i @click="next" class="iconfont icon-yinpinshangyiquxiayiqu-copy"></i>
           </div>
           <!-- <div class="icon i-right">
@@ -61,7 +60,7 @@
         </div>
       </div>
   </div>
-  <div class="mini-player" v-show="!fullScreen" @click="open" >
+  <div class="mini-player" :style="{backgroundColor: skinColor}" v-show="!fullScreen" @click="open">
     <div class="icon" >
       <img width="40" height="40" :src="currentSong.image" :class="cdCls" style="padding-bottom: 10px;">
     </div>
@@ -93,13 +92,17 @@ export default {
       currentLyric: null,
       currentLineNum: 0,
       currentShow: 'cd',
-      playingLyric: ''
+      playingLyric: '',
+      isShowSkinColors: false
     }
   },
   components: {
     ProgressBar
   },
   computed:{
+    skinColor() {
+      return this.$store.state.skinColor;
+    },
     cdCls() {
       return this.playing ? 'play' : 'pause'
     },
@@ -128,6 +131,9 @@ export default {
       this.$nextTick(()=>{
         this.$refs.audio.play()        
       })
+    },
+    skinColor(val) {
+      localStorage.skinColor = val;
     },
     playing(newPlaying) {
       const audio = this.$refs.audio
@@ -159,7 +165,15 @@ export default {
     },
     back() {
       this.setFullScreen(false)
+      this.isShowSkinColors = false
       // console.log(currentSong)
+    },
+    showSkinColor() {
+      this.isShowSkinColors = !this.isShowSkinColors;
+    },
+    changeSkinColor(color) {
+      this.$store.commit('changeSkinColor', color);
+      this.isShowSkinColors = false;
     },
     open() {
        this.setFullScreen(true)
@@ -287,27 +301,69 @@ export default {
         bottom: 170px;
         white-space: nowrap;
         font-size: 0;
-        // .icon-skin {
-        //   flex: 1;
-        //   width: 100%;
-        //   height: 30px;
-        //   background-repeat: no-repeat;
-        //   background-size: contain;
-        //   margin-top: 3px;
-        //   cursor: pointer;
-        // }
-        // .icon-skin-red {
-        //   background-image: url('./skinRed.svg');
-        // }
-        // .icon-skin-green {
-        //   background-image: url('./skinGreen.svg');
-        // }
-        // .icon-skin-blue {
-        //   background-image: url('./skinBlue.svg');
-        // }
-        // .icon-skin-black {
-        //   background-image: url('./skinBlack.svg');
-        // }
+        .skin {
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          bottom: 30px;
+          right: 15px;
+          width: 30px;
+          // height: 100px;
+          // background-color: red;
+          .skin-colors {
+            flex: 4;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .selected {
+              border: 1px solid white;
+            }
+            i {
+              flex: 1;
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              cursor: pointer;
+              border-radius: 10px;
+              margin-bottom: 5px;
+            }
+            i.one {
+              background-color: #B72712;
+            }
+            i.two {
+              background-color: #1565C0;
+            }
+            i.three {
+              background-color: #212121;
+            }
+            i.four {
+              background-color: #1B5E20;
+            }
+          }
+           .icon-skin {
+          flex: 1;
+          width: 100%;
+          height: 30px;
+          background-repeat: no-repeat;
+          background-size: contain;
+          margin-top: 3px;
+          cursor: pointer;
+        }
+        .icon-skin-red {
+          background-image: url('./skinRed.svg');
+        }
+        .icon-skin-green {
+          background-image: url('./skinGreen.svg');
+        }
+        .icon-skin-blue {
+          background-image: url('./skinBlue.svg');
+        }
+        .icon-skin-black {
+          background-image: url('./skinBlack.svg');
+        }
+        }
         .middle-l{
           display: inline-block;
           vertical-align: top;

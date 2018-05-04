@@ -40,6 +40,12 @@ const mutations = {
   },
   [types.showAsideMenu](state, flag) {
     state.isShowAsideMenu = flag;
+  },
+  [types.changeSkinColor](state, color) {
+    state.skinColor = color;
+  },
+  [types.showAbout](state, flag) {
+    state.isShowAbout = flag;
   }
 }
 

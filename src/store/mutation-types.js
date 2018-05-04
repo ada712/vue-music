@@ -23,3 +23,11 @@ export const SET_PLAY_HISTORY = 'SET_PLAY_HISTORY'
 export const SET_FAVORITE_LIST = 'SET_FAVORITE_LIST'
  
 export const showAsideMenu = 'showAsideMenu'
+
+export const changeSkinColor = 'changeSkinColor'
+
+export const showAbout = 'showAbout'
+
+
+
+

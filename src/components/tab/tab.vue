@@ -1,5 +1,5 @@
 <template>
-  <div id="tab">
+  <div id="tab" :style="{backgroundColor: skinColor}">
       <!-- tab最终使得router-link渲染出什么样的标签 -->
       <router-link tag="div" class="tab-item" to="/recommend">
         <span class="tab-link">推荐</span>
@@ -14,6 +14,12 @@
 </template>
 <script>
 export default {
+    computed:{
+    //获取当前皮肤颜色
+        skinColor() {
+        return this.$store.state.skinColor;
+        }
+    }
   
 }
 </script>

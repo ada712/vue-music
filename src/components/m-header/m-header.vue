@@ -1,5 +1,5 @@
 <<template>
-  <div id="m-header">
+  <div id="m-header" :style="{backgroundColor: skinColor}">
     <span class="PersonCenter" >
       <i class="iconfont icon-gerenzhongxinkaobei" style="font-size：25px;" @click="showAsideMenu(true)"></i>
     </span>
@@ -17,6 +17,12 @@ export default {
     showAsideMenu(flag) {
       this.$store.commit('showAsideMenu', flag);
     }
+  },
+  computed:{
+  //获取当前皮肤颜色
+      skinColor() {
+      return this.$store.state.skinColor;
+      }
   }
 }
 </script>
