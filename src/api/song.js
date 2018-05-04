@@ -19,7 +19,7 @@ export function getMusic(mid) {
     // uin: 1152579039,
     // cid: 205361747,
     // format: 'json'
-    g_tk: 2055263323,
+    g_tk: 772463793,
     loginUin: 1152579039,
     hostUin: 0,
     format:'json',
@@ -29,10 +29,10 @@ export function getMusic(mid) {
     platform:'yqq',
     needNewCode:0,
     cid: 205361747,
-    uin: 1152579039,
+    uin: 0,
     songmid:mid,
     filename: 'C400' + mid + '.m4a',
-    guid: 3636738193
+    guid: 7099607575    
   })
 
   return axios.get(url, {

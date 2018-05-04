@@ -111,16 +111,16 @@
         // bottom
 
         this.currentIndex = listHeight.length - 2
-      },
-      diff(newVal) {
-        let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
-        if (this.fixedTop === fixedTop) {
-          return
-        }
-        this.fixedTop = fixedTop
-        // console.log(this.fixedTop)
-        this.$refs.fixed.style.transform = `translate3d(0, ${fixedTop}px, 0)`
       }
+      // diff(newVal) {
+      //   let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
+      //   if (this.fixedTop === fixedTop) {
+      //     return
+      //   }
+      //   this.fixedTop = fixedTop
+      //   // console.log(this.fixedTop)
+      //   this.$refs.fixed.style.transform = `translate3d(0, ${fixedTop}px, 0)`
+      // }
     },
     methods: {
       refresh() {

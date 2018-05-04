@@ -64,7 +64,10 @@
               // // console.log('songVkey', songVkey)
               const newSong = createSong(musicData, songVkey)
               ret.push(newSong)
+            } else {
+              console.log('获取失败咯')
             }
+                      // ret.push(createSong(musicData))
           })
           }
         })
