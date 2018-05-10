@@ -7,7 +7,10 @@ import 'common/scss/index.scss'
 import VueLazyload from 'vue-lazyload'
 import store from './store'
 
-
+/* eslint-disable no-unused-vars*/
+import VConsole from 'vconsole'
+var vConsole = new VConsole()  // 上线注释掉
+console.log(vConsole) // 上线注释掉
 
 // if (process.env.NODE_ENV === 'production') { // 来判断是不是生产环境？
 //   fastclick.attach(document.body)
@@ -15,7 +18,7 @@ import store from './store'
 fastclick.attach(document.body)
 Vue.use(VueLazyload, {
   loading: require('common/image/default.gif')
-})
+})  
 
 Vue.config.productionTip = false
 
