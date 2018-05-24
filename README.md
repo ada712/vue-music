@@ -1,4 +1,7 @@
 # vue-music
+
+https://www.jianshu.com/p/ec963f4264e8
+
 该项目在慕课网上有课程：全网稀缺Vue 2.0高级实战 独立开发专属音乐WebAPP
 
 欢迎star，源码在此 webapp QQ音乐接口
