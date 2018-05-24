@@ -24,6 +24,7 @@
   
 </template>
 <script>
+import axios from 'axios'
 import { search } from 'api/search'
 import { ERR_OK } from 'api/config'
 import { createSong } from 'common/js/song'
@@ -90,13 +91,23 @@ export default {
       this.page = 1
       this.hasMore = true
       this.$refs.suggest.scrollTo(0, 0)
-      search(this.query,this.page,this.showSinger,perpage).then((res)=>{
-        if (res.code === ERR_OK) {
-          this.result = this._getResult(res.data)
-          console.log('搜索的结果',this.result)
-          // this._checkHasMore(res.data)
+      axios.get('http://120.79.162.149:3000/search?keywords=周杰伦', {})
+      .then( res=>{
+        console.log(res)
+        if (res.status === 200) {
+          console.log('列表',res)
         }
       })
+      .catch( err=> {
+        console.log(err);
+      })
+      // search(this.query,this.page,this.showSinger,perpage).then((res)=>{
+      //   if (res.code === ERR_OK) {
+      //     this.result = this._getResult(res.data)
+      //     console.log('搜索的结果',this.result)
+      //     // this._checkHasMore(res.data)
+      //   }
+      // })
     },
     // 判断是否已加载完
     _checkHasMore(data) {
